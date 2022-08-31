@@ -4,12 +4,30 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
   <title>Corretoria</title>
   <script> 
     function renderizarCadastrarProprietario(){
       $(function(){
         $("#subView").load("/cadastrarProprietario"); 
+      });
+    }
+
+    function renderizarAtualizarProprietario(){
+      $(function(){
+        $("#subView").load("/atualizarProprietario"); 
+      });
+    }
+
+    function renderizarDeletarProprietario(){
+      $(function(){
+        $("#subView").load("/deletarProprietario"); 
+      });
+    }
+
+    function renderizarListarProprietarios(){
+      $(function(){
+        $("#subView").load("/listarProprietarios"); 
       });
     }
 
@@ -23,7 +41,11 @@
 <body>
   <h1>Página Inicial</h1>
   <button onclick="renderizarCadastrarProprietario()">Cadastrar Proprietário</button>
+  <button onclick="renderizarAtualizarProprietario()">Atualizar Proprietário</button>
+  <button onclick="renderizarDeletarProprietario()">Deletar Proprietário</button>
+  <button onclick="renderizarListarProprietarios()">Listar Proprietários</button>
   <button onclick="limparView()">Limpar View</button>
   <div id="subView"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

@@ -1,0 +1,34 @@
+<html>
+    <body>
+        <table id="tabelaProprietarios">
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+            </tr>
+        </table>
+        <script>
+            $.post("listarProprietarios")
+            .done(function( data ) {
+
+                data = data.filter(proprietario => {
+                    if(proprietario.numero !== '-1') return true;
+                    const hasNumber = data.find(elemento => {
+                        if((elemento.cpf === proprietario.cpf) && elemento.numero !== '-1') return true;
+                    });
+                    return !hasNumber;
+                })
+                data.forEach(proprietario => {
+                    $("#tabelaProprietarios").append(
+                        $("<tr>").append(
+                            $("<td>").text(proprietario.nome),
+                            $("<td>").text(proprietario.cpf),
+                            $("<td>").text(proprietario.numero !== '-1' ? proprietario.numero : 'Nulo')
+                        )
+                    )
+                });
+                console.log( "Data Loaded: " + JSON.stringify(data) );
+            });
+        </script>
+    </body>
+</html>

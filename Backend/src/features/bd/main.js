@@ -1,7 +1,6 @@
 const mysql = require('mysql');
 
 function getDb() {
-    console.log('getDb');
     const con = mysql.createConnection({
         host: "localhost",
         user: "root",
@@ -23,14 +22,40 @@ function getDb() {
 
     function createTable(tableName, parms, callback) {
         const parmsString = parms.map(p => `${p.name} ${p.type}`).join(', ');
-        // console.log(`CREATE TABLE ${tableName} (${parmsString})`);
         query(`CREATE TABLE ${tableName} (${parmsString})`, callback);
+        console.log(`CREATE TABLE ${tableName} (${parmsString})`);
+    }
+
+    function insertInto(tableName, parms, callback) {
+        const namesString = parms.map(param => param.name).join(', ');
+        const valuesString = parms.map(param => `'${param.value}'`).join(', ');
+        query(`INSERT INTO ${tableName} (${namesString}) VALUES (${valuesString})`, callback);
+    }
+
+    function deleteFrom(tableName, params, callback) {
+        const whereString = params.map(param => `${param.name} = '${param.value}'`).join(' AND ');
+        query(`DELETE FROM ${tableName} WHERE ${whereString}`, callback);
+    }
+
+    function update(tableName, parms, conditions, callback) {
+        const setString = parms.map(param => `${param.name} = '${param.value}'`).join(', ');
+        const whereString = conditions.map(condition => `${condition.name} = '${condition.value}'`).join(' AND ');
+        query(`UPDATE ${tableName} SET ${setString} WHERE ${whereString}`, callback);
+    }
+
+    function sellectAll(tableName, params, callback) {
+        const whereString = params.map(param => `${param.name} = '${param.value}'`).join(' AND ');
+        query(`SELECT * FROM ${tableName} WHERE ${whereString}`, callback);
     }
 
     return {
         query,
         createDatabase,
-        createTable
+        createTable,
+        insertInto,
+        deleteFrom,
+        update,
+        sellectAll,
     }
 }
 
