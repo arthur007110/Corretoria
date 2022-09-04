@@ -39,6 +39,11 @@ const rotas = [
         filePath: ['Frontend', 'Pages', 'Proprietario', 'Listar', 'index.html'] 
     },
     {
+        path: '/visualizarProprietario',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Proprietario', 'Visualizar', 'index.html'] 
+    },
+    {
         path: '/listarProprietarios',
         method: 'POST',
         controller: pessoaC,
@@ -61,6 +66,12 @@ const rotas = [
         method: 'POST',
         controller: pessoaC,
         action: 'atualizarProprietario',
+    },
+    {
+        path: '/visualizarProprietario',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'visualizarProprietario',
     }
 ]
 

@@ -48,6 +48,16 @@ function getDb() {
         query(`SELECT * FROM ${tableName} WHERE ${whereString}`, callback);
     }
 
+    function sellectOne(tableName, params, callback) {
+        const whereString = params.map(param => `${param.name} = '${param.value}'`).join(' AND ');
+        query(`SELECT * FROM ${tableName} WHERE ${whereString} LIMIT 1`, callback);
+    }
+
+    function rightJoin(tableName1, tableName2, params, callback) {
+        const whereString = params.map(param => `${param.name} = '${param.value}'`).join(' AND ');
+        query(`SELECT * FROM ${tableName1} RIGHT JOIN ${tableName2} ON ${whereString}`, callback);
+    }
+
     return {
         query,
         createDatabase,
@@ -56,6 +66,8 @@ function getDb() {
         deleteFrom,
         update,
         sellectAll,
+        sellectOne,
+        rightJoin,
     }
 }
 

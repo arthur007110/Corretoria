@@ -1,34 +1,41 @@
 <html>
     <body>
+        <h2>Página de listar Proprietários</h2>
         <table id="tabelaProprietarios">
             <tr>
                 <th>Nome</th>
                 <th>CPF</th>
-                <th>Telefone</th>
+                <th>Visualizar</th>
             </tr>
         </table>
         <script>
             $.post("listarProprietarios")
             .done(function( data ) {
-
-                data = data.filter(proprietario => {
-                    if(proprietario.numero !== '-1') return true;
-                    const hasNumber = data.find(elemento => {
-                        if((elemento.cpf === proprietario.cpf) && elemento.numero !== '-1') return true;
-                    });
-                    return !hasNumber;
-                })
                 data.forEach(proprietario => {
+                    const tr = document.createElement('tr');
                     $("#tabelaProprietarios").append(
                         $("<tr>").append(
                             $("<td>").text(proprietario.nome),
                             $("<td>").text(proprietario.cpf),
-                            $("<td>").text(proprietario.numero !== '-1' ? proprietario.numero : 'Nulo')
+                            $("<td>").append(
+                                $("<button>").text("Visualizar").click(
+                                    function(){
+                                        visualizarProprietario(proprietario.cpf)
+                                    }
+                                )
+                            )
                         )
                     )
                 });
-                console.log( "Data Loaded: " + JSON.stringify(data) );
             });
+
+            function visualizarProprietario(cpf){
+                // console.log(cpf);
+                $(function(){
+                    localStorage.setItem('cpf', cpf);
+                    $("#subView").load("/visualizarProprietario?cpf=" + cpf); 
+                });
+            }
         </script>
     </body>
 </html>

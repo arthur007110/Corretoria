@@ -1,0 +1,24 @@
+<html>
+    <h2>Página de visuaizar Proprietário</h2>
+    <body>
+        Nome: <span id="nomeProprietario"></span> <br>
+        CPF: <span id="cpfProprietario"></span> <br>
+        Telefones:
+        <ul id="telefonesProprietario"></ul>
+        <script>
+            cpf = localStorage.getItem('cpf');
+            console.log(cpf);
+            $.post("visualizarProprietario", {cpf})
+            .done(function( data ) {
+                console.log(data);
+                $("#nomeProprietario").text(data.nome);
+                $("#cpfProprietario").text(data.cpf);
+                data.telefones.forEach(telefone => {
+                    $("#telefonesProprietario").append(
+                        $("<li>").text(telefone.numero)
+                    )
+                });
+            });
+        </script>
+    </body>
+</html>
