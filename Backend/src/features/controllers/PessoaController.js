@@ -87,25 +87,43 @@ function PessoaController(db){
         }
     }
 
+    function visualizarProprietario(proprietario) {
+        const { cpf } = proprietario;
+        return new Promise((resolve, reject) => {
+            const paramsPessoa = [
+                {name: 'tipoPessoa', value: 'proprietario'},
+                {name: 'cpf', value: cpf},
+            ];
+            const paramsTelefone = [
+                {name: 'cpfPessoa', value: cpf},
+            ];
+            console.log(paramsPessoa);
+            const _proprietario = {};
+
+            db.sellectOne('pessoa', paramsPessoa, (err, result) =>{
+                if(err) reject(err);
+                console.log(result);
+                _proprietario.cpf = result[0].cpf;
+                _proprietario.nome = result[0].nome;
+                db.sellectAll('telefone', paramsTelefone, (err, result) =>{
+                    if(err) reject(err);
+                    _proprietario.telefones = result;
+                    resolve(_proprietario);
+                });
+            });
+        });
+    }
+
     function listarProprietarios() {
         return new Promise((resolve, reject) => {
             const params = [
                 {name: 'tipoPessoa', value: 'proprietario'},
             ];
     
-            // db.sellectAll('pessoa', params, (err, result) =>{
-            //     if(err) reject(err);
-            //     resolve(result);
-            // });
-            db.query(
-                `SELECT corretoria.pessoa.nome, corretoria.pessoa.cpf, corretoria.telefone.numero from corretoria.pessoa inner join corretoria.telefone on telefone.cpfPessoa=pessoa.cpf
-                union
-                select corretoria.pessoa.nome, corretoria.pessoa.cpf, -1 from corretoria.pessoa`,
-                (err, result) =>{
-                    if(err) reject(err);
-                    resolve(result);
-                }
-            )
+            db.sellectAll('pessoa', params, (err, result) =>{
+                if(err) reject(err);
+                resolve(result);
+            });
         });
     }
 
@@ -113,7 +131,8 @@ function PessoaController(db){
         salvarProprietario,
         deletarProprietario,
         atualizarProprietario,
-        listarProprietarios
+        listarProprietarios,
+        visualizarProprietario
     }
 
 }
