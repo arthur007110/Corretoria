@@ -31,6 +31,30 @@
       });
     }
 
+    function renderizarCadastrarInquilino(){
+      $(function(){
+        $("#subView").load("/cadastrarInquilino"); 
+      });
+    }
+
+    function renderizarAtualizarInquilino(){
+      $(function(){
+        $("#subView").load("/atualizarInquilino"); 
+      });
+    }
+
+    function renderizarDeletarInquilino(){
+      $(function(){
+        $("#subView").load("/deletarInquilino"); 
+      });
+    }
+    
+    function renderizarListarInquilinos(){
+      $(function(){
+        $("#subView").load("/listarInquilinos"); 
+      });
+    }
+
     function limparView(){
       $(function(){
         $("#subView").empty(); 
@@ -45,6 +69,10 @@
   <button onclick="renderizarDeletarProprietario()">Deletar Proprietário</button>
   <button onclick="renderizarListarProprietarios()">Listar Proprietários</button>
   <button onclick="limparView()">Limpar View</button>
+  <button onclick="renderizarCadastrarInquilino()">Cadastrar Inquilino</button>
+  <button onclick="renderizarAtualizarInquilino()">Atualizar Inquilino</button>
+  <button onclick="renderizarDeletarInquilino()">Deletar Inquilino</button>
+  <button onclick="renderizarListarInquilinos()">Listar inquilinos</button>
   <div id="subView"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>

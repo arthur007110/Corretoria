@@ -72,6 +72,61 @@ const rotas = [
         method: 'POST',
         controller: pessoaC,
         action: 'visualizarProprietario',
+    },
+    {
+        path: '/cadastrarInquilino',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Inquilino', 'Cadastrar', 'index.html'] 
+    },
+    {
+        path: '/atualizarInquilino',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Inquilino', 'Atualizar', 'index.html'] 
+    },
+    {
+        path: '/deletarInquilino',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Inquilino', 'Deletar', 'index.html'] 
+    },
+    {
+        path: '/listarInquilinos',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Inquilino', 'Listar', 'index.html'] 
+    },
+    {
+        path: '/visualizarInquilino',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Inquilino', 'Visualizar', 'index.html'] 
+    },
+    {
+        path: '/listarInquilinos',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'listarInquilinos',
+    },
+    {
+        path: '/salvarInquilino',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'salvarInquilino',
+    },
+    {
+        path: '/deletarInquilino',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'deletarInquilino',
+    },
+    {
+        path: '/atualizarInquilino',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'atualizarInquilino',
+    },
+    {
+        path: '/visualizarInquilino',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'visualizarInquilino',
     }
 ]
 

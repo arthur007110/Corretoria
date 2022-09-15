@@ -1,0 +1,24 @@
+<html>
+    <h2>Página de visuaizar Inquilino</h2>
+    <body>
+        Nome: <span id="nomeInquilino"></span> <br>
+        CPF: <span id="cpfInquilino"></span> <br>
+        Telefones:
+        <ul id="telefonesInquilino"></ul>
+        <script>
+            cpf = localStorage.getItem('cpf');
+            console.log(cpf);
+            $.post("visualizarInquilino", {cpf})
+            .done(function( data ) {
+                console.log(data);
+                $("#nomeInquilino").text(data.nome);
+                $("#cpfInquilino").text(data.cpf);
+                data.telefones.forEach(telefone => {
+                    $("#telefonesInquilino").append(
+                        $("<li>").text(telefone.numero)
+                    )
+                });
+            });
+        </script>
+    </body>
+</html>
