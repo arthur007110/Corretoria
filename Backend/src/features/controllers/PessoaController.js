@@ -5,6 +5,9 @@ function PessoaController(db){
 
     const InquilinoController = require('./InquilinoController');
     const InquilinoC = InquilinoController(db);
+
+    const CorretorController = require('./CorretorController');
+    const CorretorC = CorretorController(db);
     
     
     function salvarProprietario(proprietario) {
@@ -47,6 +50,26 @@ function PessoaController(db){
        return InquilinoC.listarInquilinos();
     }
 
+    function salvarCorretor(inquilino) {
+        return CorretorC.salvarCorretor(inquilino);
+    }
+
+    function deletarCorretor(inquilino) {
+        return CorretorC.deletarCorretor(inquilino);
+    }
+
+    function atualizarCorretor(inquilino) {
+        return CorretorC.atualizarCorretor(inquilino);
+    }
+
+    function visualizarCorretor(inquilino) {
+       return CorretorC.visualizarCorretor(inquilino);
+    }
+
+    function listarCorretores() {
+       return CorretorC.listarCorretores();
+    }
+    
     return{
         salvarProprietario,
         deletarProprietario,
@@ -57,7 +80,12 @@ function PessoaController(db){
         deletarInquilino,
         atualizarInquilino,
         listarInquilinos,
-        visualizarInquilino
+        visualizarInquilino,
+        salvarCorretor,
+        deletarCorretor,
+        atualizarCorretor,
+        listarCorretores,
+        visualizarCorretor
     }
 
 }

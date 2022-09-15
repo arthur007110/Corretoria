@@ -1,0 +1,41 @@
+<html>
+    <body>
+        <h2>Página de listar Corretores</h2>
+        <table id="tabelaCorretors">
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Visualizar</th>
+            </tr>
+        </table>
+        <script>
+            $.post("listarCorretores")
+            .done(function( data ) {
+                data.forEach(corretor => {
+                    const tr = document.createElement('tr');
+                    $("#tabelaCorretores").append(
+                        $("<tr>").append(
+                            $("<td>").text(corretor.nome),
+                            $("<td>").text(corretor.cpf),
+                            $("<td>").append(
+                                $("<button>").text("Visualizar").click(
+                                    function(){
+                                        visualizarCorretor(corretor.cpf)
+                                    }
+                                )
+                            )
+                        )
+                    )
+                });
+            });
+
+            function visualizarCorretor(cpf){
+                // console.log(cpf);
+                $(function(){
+                    localStorage.setItem('cpf', cpf);
+                    $("#subView").load("/visualizarCorretor?cpf=" + cpf); 
+                });
+            }
+        </script>
+    </body>
+</html>

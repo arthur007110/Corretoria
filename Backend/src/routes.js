@@ -127,6 +127,61 @@ const rotas = [
         method: 'POST',
         controller: pessoaC,
         action: 'visualizarInquilino',
+    },
+    {
+        path: '/cadastrarCorretor',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Corretor', 'Cadastrar', 'index.html'] 
+    },
+    {
+        path: '/atualizarCorretor',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Corretor', 'Atualizar', 'index.html'] 
+    },
+    {
+        path: '/deletarCorretor',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Corretor', 'Deletar', 'index.html'] 
+    },
+    {
+        path: '/listarCorretores',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Corretor', 'Listar', 'index.html'] 
+    },
+    {
+        path: '/visualizarCorretor',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Corretor', 'Visualizar', 'index.html'] 
+    },
+    {
+        path: '/listarCorretores',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'listarCorretores',
+    },
+    {
+        path: '/salvarCorretor',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'salvarCorretor',
+    },
+    {
+        path: '/deletarCorretor',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'deletarCorretor',
+    },
+    {
+        path: '/atualizarCorretor',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'atualizarCorretor',
+    },
+    {
+        path: '/visualizarCorretor',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'visualizarCorretor',
     }
 ]
 

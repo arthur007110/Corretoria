@@ -1,0 +1,24 @@
+<html>
+    <h2>Página de visuaizar Corretor</h2>
+    <body>
+        Nome: <span id="nomeCorretor"></span> <br>
+        CPF: <span id="cpfCorretor"></span> <br>
+        Telefones:
+        <ul id="telefonesCorretor"></ul>
+        <script>
+            cpf = localStorage.getItem('cpf');
+            console.log(cpf);
+            $.post("visualizarCorretor", {cpf})
+            .done(function( data ) {
+                console.log(data);
+                $("#nomeCorretor").text(data.nome);
+                $("#cpfCorretor").text(data.cpf);
+                data.telefones.forEach(telefone => {
+                    $("#telefonesCorretor").append(
+                        $("<li>").text(telefone.numero)
+                    )
+                });
+            });
+        </script>
+    </body>
+</html>
