@@ -87,7 +87,6 @@ function PessoaController(db){
         listarCorretores,
         visualizarCorretor
     }
-
 }
 
 module.exports = PessoaController;

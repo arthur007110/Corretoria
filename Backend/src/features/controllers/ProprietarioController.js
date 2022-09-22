@@ -105,7 +105,7 @@ function ProprietarioController(db){
                 console.log(result);
                 _proprietario.cpf = result[0].cpf;
                 _proprietario.nome = result[0].nome;
-                db.sellectAll('telefone', paramsTelefone, (err, result) =>{
+                db.sellectAllWhere('telefone', paramsTelefone, (err, result) =>{
                     if(err) reject(err);
                     _proprietario.telefones = result;
                     resolve(_proprietario);
@@ -120,7 +120,7 @@ function ProprietarioController(db){
                 {name: 'tipoPessoa', value: 'proprietario'},
             ];
     
-            db.sellectAll('pessoa', params, (err, result) =>{
+            db.sellectAllWhere('pessoa', params, (err, result) =>{
                 if(err) reject(err);
                 resolve(result);
             });
