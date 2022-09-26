@@ -11,6 +11,8 @@ try{
 
 const pessoaController = require('./features/controllers/PessoaController');
 const pessoaC = pessoaController(db);
+const imovelController = require('./features/controllers/ImovelController');
+const imovelC = imovelController(db);
 
 const rotas = [
     {
@@ -182,7 +184,42 @@ const rotas = [
         method: 'POST',
         controller: pessoaC,
         action: 'visualizarCorretor',
-    }
+    },
+    {
+        path: '/salvarImovel',
+        method: 'POST',
+        controller: imovelC,
+        action: 'salvarImovel',
+    },
+    {
+        path: '/deletarImovel',
+        method: 'POST',
+        controller: imovelC,
+        action: 'deletarImovel',
+    },
+    {
+        path: '/atualizarImovel',
+        method: 'POST',
+        controller: imovelC,
+        action: 'atualizarImovel',
+    },
+    {
+        path: '/visualizarImovel',
+        method: 'POST',
+        controller: imovelC,
+        action: 'visualizarImovel',
+    },
+    {
+        path: '/listarImoveis',
+        method: 'POST',
+        controller: imovelC,
+        action: 'listarImoveis',
+    },
+    {
+        path: '/cadastrarImovel',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Imovel', 'Cadastrar', 'index.html']
+    },
 ]
 
 definirRotas = (rotas) => {

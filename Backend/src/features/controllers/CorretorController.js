@@ -105,7 +105,7 @@ function CorretorController(db){
                 console.log(result);
                 _corretor.cpf = result[0].cpf;
                 _corretor.nome = result[0].nome;
-                db.sellectAll('telefone', paramsTelefone, (err, result) =>{
+                db.sellectAllWhere('telefone', paramsTelefone, (err, result) =>{
                     if(err) reject(err);
                     _corretor.telefones = result;
                     resolve(_corretor);
@@ -120,7 +120,7 @@ function CorretorController(db){
                 {name: 'tipoPessoa', value: 'corretor'},
             ];
     
-            db.sellectAll('pessoa', params, (err, result) =>{
+            db.sellectAllWhere('pessoa', params, (err, result) =>{
                 if(err) reject(err);
                 resolve(result);
             });

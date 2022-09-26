@@ -1,0 +1,41 @@
+<html>
+    <body>
+        <h2>Página de listar Inquilino</h2>
+        <table id="tabelaInquilinos">
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Visualizar</th>
+            </tr>
+        </table>
+        <script>
+            $.post("listarInquilinos")
+            .done(function( data ) {
+                data.forEach(inquilino => {
+                    const tr = document.createElement('tr');
+                    $("#tabelaInquilinos").append(
+                        $("<tr>").append(
+                            $("<td>").text(inquilino.nome),
+                            $("<td>").text(inquilino.cpf),
+                            $("<td>").append(
+                                $("<button>").text("Visualizar").click(
+                                    function(){
+                                        visualizarInquilino(inquilino.cpf)
+                                    }
+                                )
+                            )
+                        )
+                    )
+                });
+            });
+
+            function visualizarInquilino(cpf){
+                // console.log(cpf);
+                $(function(){
+                    localStorage.setItem('cpf', cpf);
+                    $("#subView").load("/visualizarInquilino?cpf=" + cpf); 
+                });
+            }
+        </script>
+    </body>
+</html>

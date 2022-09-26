@@ -43,7 +43,11 @@ function getDb() {
         query(`UPDATE ${tableName} SET ${setString} WHERE ${whereString}`, callback);
     }
 
-    function sellectAll(tableName, params, callback) {
+    function sellectAll(tableName, callback) {
+        query(`SELECT * FROM ${tableName}`, callback);
+    }
+
+    function sellectAllWhere(tableName, params, callback) {
         const whereString = params.map(param => `${param.name} = '${param.value}'`).join(' AND ');
         query(`SELECT * FROM ${tableName} WHERE ${whereString}`, callback);
     }
@@ -67,6 +71,7 @@ function getDb() {
         update,
         sellectAll,
         sellectOne,
+        sellectAllWhere,
         rightJoin,
     }
 }

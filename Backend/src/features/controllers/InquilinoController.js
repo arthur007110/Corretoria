@@ -105,7 +105,7 @@ function InquilinoController(db){
                 console.log(result);
                 _inquilino.cpf = result[0].cpf;
                 _inquilino.nome = result[0].nome;
-                db.sellectAll('telefone', paramsTelefone, (err, result) =>{
+                db.sellectAllWhere('telefone', paramsTelefone, (err, result) =>{
                     if(err) reject(err);
                     _inquilino.telefones = result;
                     resolve(_inquilino);
@@ -120,7 +120,7 @@ function InquilinoController(db){
                 {name: 'tipoPessoa', value: 'inquilino'},
             ];
     
-            db.sellectAll('pessoa', params, (err, result) =>{
+            db.sellectAllWhere('pessoa', params, (err, result) =>{
                 if(err) reject(err);
                 resolve(result);
             });
