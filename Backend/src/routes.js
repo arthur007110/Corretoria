@@ -147,11 +147,16 @@ definirRotas = (rotas) => {
         }
         if(rota.method === 'POST'){
             router.post(rota.path, async(req, res) => {
-                const { body } = req;
-                const result = await rota.controller[rota.action](body);
-                console.log(result);
-                if(result) res.send(result);
-                else res.status(200).send('OK');
+                try{
+                    const { body } = req;
+                    const result = await rota.controller[rota.action](body);
+                    console.log(result);
+                    if(result) res.send(result);
+                    else res.status(200).send('OK');
+                }catch(err){
+                    console.log(err);
+                    res.status(500).send(err.toString());
+                }
             });
             return;
         }
