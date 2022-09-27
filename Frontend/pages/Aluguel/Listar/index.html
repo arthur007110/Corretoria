@@ -1,0 +1,47 @@
+<html>
+    <body>
+        <h2>Página de listar Alugueis</h2>
+        <table id="tabelaAlugueis">
+            <tr>
+                <th>Nome do Inquilino</th>
+                <th>Nome do Corretor</th>
+                <th>Nome do Proprietário</th>
+                <th>Data do Aluguel</th>
+                <th>Valor</th>
+                <th>Estadia</th>
+                <th>Visualizar</th>
+            </tr>
+        </table>
+        <script>
+            $.post("listarAlugueis")
+            .done(function( data ) {
+                data.forEach(aluguel => {
+                    const tr = document.createElement('tr');
+                    $("#tabelaAlugueis").append(
+                        $("<tr>").append(
+                            $("<td>").text(aluguel.dataAluguel),
+                            $("<td>").text(aluguel.valorAluguel),
+                            $("<td>").text(aluguel.estadia),
+                            $("<td>").append(
+                                $("<button>").text("Visualizar").click(
+                                    function(){
+                                        visualizarInquilino(aluguel.idImovel, aluguel.cpfInquilino)
+                                    }
+                                )
+                            )
+                        )
+                    )
+                });
+            });
+
+            function visualizarAluguel(idImovel, cpfInquilino){
+                // console.log(cpf);
+                $(function(){
+                    localStorage.setItem('cpf', cpfInquilino);
+                    localStorage.setItem('idImovel', idImovel);
+                    $("#subView").load("/visualizarAluguel"); 
+                });
+            }
+        </script>
+    </body>
+</html>

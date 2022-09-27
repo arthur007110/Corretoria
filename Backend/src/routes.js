@@ -13,6 +13,9 @@ const pessoaController = require('./features/controllers/PessoaController');
 const pessoaC = pessoaController(db);
 const imovelController = require('./features/controllers/ImovelController');
 const imovelC = imovelController(db);
+//Criei aq
+const aluguelController = require('./features/controllers/AluguelController');
+const aluguelC = aluguelController(db);
 
 const rotas = [
     {
@@ -219,6 +222,61 @@ const rotas = [
         path: '/cadastrarImovel',
         method: 'GET',
         filePath: ['Frontend', 'Pages', 'Imovel', 'Cadastrar', 'index.html']
+    },
+    {
+        path: '/salvarAluguel',
+        method: 'POST',
+        controller: aluguelC,
+        action: 'salvarAluguel',
+    },
+    {
+        path: '/deletarAluguel',
+        method: 'POST',
+        controller: aluguelC,
+        action: 'deletarAluguel',
+    },
+    {
+        path: '/atualizarAluguel',
+        method: 'POST',
+        controller: aluguelC,
+        action: 'atualizarAluguel',
+    },
+    {
+        path: '/visualizarAluguel',
+        method: 'POST',
+        controller: aluguelC,
+        action: 'visualizarAluguel',
+    },
+    {
+        path: '/listarAlugueis',
+        method: 'POST',
+        controller: aluguelC,
+        action: 'listarAlugueis',
+    },
+    {
+        path: '/cadastrarAluguel',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Aluguel', 'Cadastrar', 'index.html']
+    },
+    {
+        path: '/atualizarAluguel',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Aluguel', 'Atualizar', 'index.html'] 
+    },
+    {
+        path: '/deletarAluguel',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Aluguel', 'Deletar', 'index.html'] 
+    },
+    {
+        path: '/listarAlugueis',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Aluguel', 'Listar', 'index.html'] 
+    },
+    {
+        path: '/visualizarAluguel',
+        method: 'GET',
+        filePath: ['Frontend', 'Pages', 'Aluguel', 'Visualizar', 'index.html'] 
     },
 ]
 
