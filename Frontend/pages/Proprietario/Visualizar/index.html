@@ -5,10 +5,11 @@
         CPF: <span id="cpfProprietario"></span> <br>
         Telefones:
         <ul id="telefonesProprietario"></ul>
+        <button onclick="voltar()">Voltar</button>
         <script>
             cpf = localStorage.getItem('cpf');
             console.log(cpf);
-            $.post("visualizarProprietario", {cpf})
+            $.post("/visualizarProprietario", {cpf})
             .done(function( data ) {
                 console.log(data);
                 $("#nomeProprietario").text(data.nome);
@@ -19,6 +20,12 @@
                     )
                 });
             });
+
+            function voltar(){
+                $(function(){
+                    $("#subView").load("/listarProprietarios"); 
+                });
+            }
         </script>
     </body>
 </html>
