@@ -1,0 +1,37 @@
+.btn-group {
+    position: relative;
+    display: inline-block;
+    font-size: 0;
+    vertical-align: middle;
+}
+
+.btn-group + .btn-group, .btn-group + .mainbutton, .mainbutton + .btn-group {
+    margin-left: 0.5rem;
+}
+
+.dropdown, .mainbutton {
+    padding: 0.5rem;
+    min-width: 7rem;
+}
+
+.btn-group > .dropdown-menu {
+    list-style-type: none;
+    z-index: 1000;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 0px 0;
+    margin-top: 3px;
+    min-width: 160px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.btn-group > .dropdown-menu li button {
+    width: 100%;
+    display: block;
+    padding: 3px 12px;
+    text-decoration: none;
+}

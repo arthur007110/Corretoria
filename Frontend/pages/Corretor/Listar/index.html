@@ -9,7 +9,7 @@
             </tr>
         </table>
         <script>
-            $.post("listarCorretores")
+            $.post("/listarCorretores")
             .done(function( data ) {
                 data.forEach(corretor => {
                     const tr = document.createElement('tr');

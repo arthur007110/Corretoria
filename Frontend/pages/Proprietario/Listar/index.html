@@ -9,7 +9,7 @@
             </tr>
         </table>
         <script>
-            $.post("listarProprietarios")
+            $.post("/listarProprietarios")
             .done(function( data ) {
                 data.forEach(proprietario => {
                     const tr = document.createElement('tr');
@@ -30,7 +30,6 @@
             });
 
             function visualizarProprietario(cpf){
-                // console.log(cpf);
                 $(function(){
                     localStorage.setItem('cpf', cpf);
                     $("#subView").load("/visualizarProprietario?cpf=" + cpf); 
