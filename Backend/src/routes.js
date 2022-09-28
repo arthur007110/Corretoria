@@ -13,6 +13,8 @@ const pessoaController = require('./features/controllers/PessoaController');
 const pessoaC = pessoaController(db);
 const imovelController = require('./features/controllers/ImovelController');
 const imovelC = imovelController(db);
+const aluguelController = require('./features/controllers/AluguelController');
+const aluguelC = aluguelController(db);
 
 const rotas = [
     {
@@ -134,6 +136,36 @@ const rotas = [
         method: 'POST',
         controller: imovelC,
         action: 'listarImoveis',
+    },
+    {
+        path: '/salvarAluguel',
+        method: 'POST',
+        controller: aluguelC,
+        action: 'salvarAluguel',
+    },
+    {
+        path: '/deletarAluguel',
+        method: 'POST',
+        controller: aluguelC,
+        action: 'deletarAluguel',
+    },
+    {
+        path: '/atualizarAluguel',
+        method: 'POST',
+        controller: aluguelC,
+        action: 'atualizarAluguel',
+    },
+    {
+        path: '/visualizarAluguel',
+        method: 'POST',
+        controller: aluguelC,
+        action: 'visualizarAluguel',
+    },
+    {
+        path: '/listarAlugueis',
+        method: 'POST',
+        controller: aluguelC,
+        action: 'listarAlugueis',
     },
 ]
 
