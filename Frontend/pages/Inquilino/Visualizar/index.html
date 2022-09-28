@@ -8,7 +8,7 @@
         <script>
             cpf = localStorage.getItem('cpf');
             console.log(cpf);
-            $.post("visualizarInquilino", {cpf})
+            $.post("/visualizarInquilino", {cpf})
             .done(function( data ) {
                 console.log(data);
                 $("#nomeInquilino").text(data.nome);
