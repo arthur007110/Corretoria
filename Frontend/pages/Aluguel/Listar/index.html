@@ -13,7 +13,7 @@
             </tr>
         </table>
         <script>
-            $.post("listarAlugueis")
+            $.post("/listarAlugueis")
             .done(function( data ) {
                 data.forEach(aluguel => {
                     const tr = document.createElement('tr');
