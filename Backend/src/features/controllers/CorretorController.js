@@ -2,7 +2,7 @@ function CorretorController(db){
 
     function salvarCorretor(corretor) {
         const { cpf, nome, telefones } = corretor;
-
+       
         if(!cpf || !nome ) throw new Error('CPF e nome são obrigatórios');
 
         const parms = [
