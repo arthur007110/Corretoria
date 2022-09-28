@@ -11,6 +11,10 @@ app.use('/', router);
 
 app.use('/', express.static(path.join(__dirname, '..', '..', 'Frontend', 'pages')));
 
+app.get('/', (_req, res) => {
+    res.redirect('/Main/index.html');
+});
+
 app.listen(3000, () => {
     console.log('Server iniciado na porta 3000');
     console.log('Acesse http://localhost:3000');
