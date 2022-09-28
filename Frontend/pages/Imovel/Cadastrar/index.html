@@ -1,24 +1,34 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="/Imovel/Cadastrar/style.css">
+    </head>
     <body>
         <h2>Página de cadastrar Imovel</h2>
-        <form action="salvarImovel" method="post">
+        <form action="/salvarImovel" method="post">
             <label for="descricao">Descricao:</label>
             <input type="text" name="descricao" id="descricao"><br>
             <label for="valor">Valor:</label>
             <input type="text" name="valor" id="valor"><br>
-            <label for="cep">cep:</label>
+            <label for="cep">Cep:</label>
             <input type="text" name="cep" id="cep"><br>
-            <label for="rua">rua:</label>
+            <label for="rua">Rua:</label>
             <input type="text" name="rua" id="rua"><br>
-            <label for="bairro">bairro:</label>
+            <label for="bairro">Bairro:</label>
             <input type="text" name="bairro" id="bairro"><br>
-            <label for="numero">numero:</label>
+            <label for="numero">Numero:</label>
             <input type="text" name="numero" id="numero"><br>
-            <label for="cpfProprietario">cpfProprietario:</label>
-            <input type="text" name="cpfProprietario" id="cpfProprietario"><br>
-            <label for="cpfCorretor">cpfCorretor:</label>
-            <input type="text" name="cpfCorretor" id="cpfCorretor"><br>
+            <input type="text" name="cpfProprietario" id="cpfProprietario">
+            <div class="btn-group">
+                <button class="dropdown" type="button" id="proprietariosDropdownButton">Proprietário</button>
+                <ul class="dropdown-menu" id="proprietariosDropdown"></ul>
+            </div><br>
+            <input type="text" name="cpfCorretor" id="cpfCorretor">
+            <div class="btn-group">
+                <button class="dropdown" type="button" id="corretoresDropdownButton">Corretor</button>
+                <ul class="dropdown-menu" id="corretoresDropdown"></ul>
+            </div><br>
             <button>Cadastrar</button>
         </form>
+        <script src="/Imovel/Cadastrar/script.js"></script>
     </body>
 </html>
