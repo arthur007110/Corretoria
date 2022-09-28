@@ -1,14 +1,22 @@
 <html>
     <body>
-        <h2>Página de atualizar Proprietário</h2>
-        <form action="/atualizarProprietario" method="post">
+        <h2>Página de atualizar Proprietario</h2>
+        <form method="post">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome"><br>
-            <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" id="cpf"><br>
             <label for="telefone">Telefone:</label>
             <input type="text" name="telefones[]" id="telefone">
-            <button>Atualizar</button>
+            <button type="button" onclick="atualizarProprietario()">Atualizar</button>
         </form>
+
+
+        <script>
+            function atualizarProprietario(){
+                $.post("/atualizarProprietario", {cpf: localStorage.getItem('cpf'), nome: $("#nome").val(), telefones: $("#telefone").val().split(",")})
+            .done(function( data ) {
+                $("#subView").load("/Proprietario/Listar/index.html"); 
+            });
+            } 
+        </script>
     </body>
 </html>
