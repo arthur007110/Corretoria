@@ -1,11 +1,13 @@
 <html>
     <body>
-        <h2>Página de listar Inquilino</h2>
+        <h2>Página de listar Inquilinos</h2>
         <table id="tabelaInquilinos">
             <tr>
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>Visualizar</th>
+                <th>Editar</th>
+                <th>Excluir</th>
             </tr>
         </table>
         <script>
@@ -23,6 +25,20 @@
                                         visualizarInquilino(inquilino.cpf)
                                     }
                                 )
+                            ),
+                            $("<td>").append(
+                                $("<button>").text("Editar").click(
+                                    function(){
+                                        atualizarInquilino(inquilino.cpf)
+                                    }
+                                )
+                            ),
+                            $("<td>").append(
+                                $("<button>").text("Excluir").click(
+                                    function(){
+                                        deletarInquilino(inquilino.cpf)
+                                    }
+                                )
                             )
                         )
                     )
@@ -30,10 +46,23 @@
             });
 
             function visualizarInquilino(cpf){
-                // console.log(cpf);
                 $(function(){
                     localStorage.setItem('cpf', cpf);
-                    $("#subView").load("/visualizarInquilino?cpf=" + cpf); 
+                    $("#subView").load("/Inquilino/Visualizar/index.html");
+                });
+            }
+
+            function deletarInquilino(cpf)   {
+                $.post("/deletarInquilino", {cpf: cpf})
+                .done(function( data ) {
+                    $("#subView").load("/Inquilino/Listar/index.html"); 
+                });
+            }
+
+            function atualizarInquilino(cpf){
+                $(function(){
+                    localStorage.setItem('cpf', cpf);
+                    $("#subView").load("/Inquilino/Atualizar/index.html"); 
                 });
             }
         </script>
