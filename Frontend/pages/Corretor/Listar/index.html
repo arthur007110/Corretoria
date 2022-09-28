@@ -6,6 +6,8 @@
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>Visualizar</th>
+                <th>Editar</th>
+                <th>Excluir</th>
             </tr>
         </table>
         <script>
@@ -23,6 +25,20 @@
                                         visualizarCorretor(corretor.cpf)
                                     }
                                 )
+                            ),
+                            $("<td>").append(
+                                $("<button>").text("Editar").click(
+                                    function(){
+                                        atualizarCorretor(corretor.cpf)
+                                    }
+                                )
+                            ),
+                            $("<td>").append(
+                                $("<button>").text("Excluir").click(
+                                    function(){
+                                        deletarCorretor(corretor.cpf)
+                                    }
+                                )
                             )
                         )
                     )
@@ -30,10 +46,23 @@
             });
 
             function visualizarCorretor(cpf){
-                // console.log(cpf);
                 $(function(){
                     localStorage.setItem('cpf', cpf);
-                    $("#subView").load("/visualizarCorretor?cpf=" + cpf); 
+                    $("#subView").load("/Corretor/Visualizar/index.html");
+                });
+            }
+
+            function deletarCorretor(cpf)   {
+                $.post("/deletarCorretor", {cpf: cpf})
+                .done(function( data ) {
+                    $("#subView").load("/Corretor/Listar/index.html"); 
+                });
+            }
+
+            function atualizarCorretor(cpf){
+                $(function(){
+                    localStorage.setItem('cpf', cpf);
+                    $("#subView").load("/Corretor/Atualizar/index.html"); 
                 });
             }
         </script>

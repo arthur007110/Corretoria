@@ -1,10 +1,11 @@
 <html>
-    <h2>Página de visuaizar Corretor</h2>
+    <h2>Página de visualizar Corretor</h2>
     <body>
         Nome: <span id="nomeCorretor"></span> <br>
         CPF: <span id="cpfCorretor"></span> <br>
         Telefones:
         <ul id="telefonesCorretor"></ul>
+        <button onclick="voltar()">Voltar</button>
         <script>
             cpf = localStorage.getItem('cpf');
             console.log(cpf);
@@ -19,6 +20,12 @@
                     )
                 });
             });
+
+            function voltar(){
+                $(function(){
+                    $("#subView").load("/Corretor/Listar/index.html"); 
+                });
+            }
         </script>
     </body>
 </html>
