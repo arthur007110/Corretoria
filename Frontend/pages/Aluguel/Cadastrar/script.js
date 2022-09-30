@@ -25,7 +25,7 @@ $.post("/listarInquilinos")
         const inquilinoButton = $("<li></li>").append(
             $("<button></button>", {type: 'button'}).text(inquilino.nome).click(
                 function(){
-                    selecionarCorretor(inquilino.cpf, inquilino.nome);
+                    selecionarInquilino(inquilino.cpf, inquilino.nome);
                 }
             )
         )
