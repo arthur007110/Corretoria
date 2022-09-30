@@ -13,15 +13,18 @@
             </tr>
         </table>
         <script>
-            $.post("/listarAlugueis")
+            $.post("/listarAlugueisView")
             .done(function( data ) {
+                console.log(data);
                 data.forEach(aluguel => {
                     const tr = document.createElement('tr');
                     $("#tabelaAlugueis").append(
                         $("<tr>").append(
-                            $("<td>").text(aluguel.dataAluguel),
-                            $("<td>").text(aluguel.valorAluguel),
-                            $("<td>").text(aluguel.estadia),
+                            $("<td>").text(aluguel.inquilino),
+                            $("<td>").text(aluguel.corretor),
+                            $("<td>").text(aluguel.proprietario),
+                            $("<td>").text(aluguel.data),
+                            $("<td>").text(aluguel.valor),
                             $("<td>").append(
                                 $("<button>").text("Visualizar").click(
                                     function(){
