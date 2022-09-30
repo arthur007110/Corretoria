@@ -120,6 +120,22 @@ function ImovelController(db){
         });
     }
 
+    function listarImoveisLivres() {
+        return new Promise((resolve, reject) => {
+            db.query( 
+                `
+                    SELECT id
+                    FROM imovel
+                    WHERE alugado = 0
+                `,
+                (err, result) =>{
+                    if(err) reject(err);
+                    resolve(result);
+                }
+            );
+        });
+    }
+
     function listarImoveisView() {
         return new Promise((resolve, reject) => {
             db.query( 
@@ -168,6 +184,7 @@ function ImovelController(db){
         deletarImovel,
         atualizarImovel,
         listarImoveis,
+        listarImoveisLivres,
         listarImoveisView,
         visualizarImovel,
         visualizarImovelView,

@@ -1,4 +1,4 @@
-$.post("/listarImoveis")
+$.post("/listarImoveisLivres")
 .done(function( data ) {
     data.forEach(imovel => {
         console.log(imovel);
