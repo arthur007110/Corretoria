@@ -1,16 +1,25 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="/Aluguel/Atualizar/style.css">
+    </head>
     <body>
         <h2>Página de atualizar Aluguel</h2>
         <form action="/atualizarAluguel" method="post">
-            <label for="idImovel">ID do Imóvel:</label>
-            <input type="text" name="idImovel" id="idImovel"><br>
-            <label for="cpfInquilino">CPF do Inquilino:</label>
-            <input type="text" name="cpfInquilino" id="cpfInquilino"><br>
             <label for="dataAluguel">Data do Aluguel:</label>
             <input type="date" name="dataAluguel" id="dataAluguel"><br>
             <label for="valorAluguel">Valor do Aluguel:</label>
             <input type="text" name="valorAluguel" id="valorAluguel"><br>
+            <div class="btn-group">
+                <button class="dropdown" type="button" id="idImovelDropdownButton">ID do Imóvel</button>
+                <ul class="dropdown-menu" id="idImovelDropdown"></ul>
+            </div><br>
+            <input type="text" name="cpfInquilino" id="cpfInquilino">
+            <div class="btn-group">
+                <button class="dropdown" type="button" id="InquilinosDropdownButton">Inquilino</button>
+                <ul class="dropdown-menu" id="InquilinosDropdown"></ul>
+            </div><br>
             <button>Atualizar</button>
         </form>
+        <script src="/Aluguel/Atualizar/script.js"></script>
     </body>
 </html>
