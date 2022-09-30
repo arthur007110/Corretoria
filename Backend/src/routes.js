@@ -132,10 +132,22 @@ const rotas = [
         action: 'visualizarImovel',
     },
     {
+        path: '/visualizarImovelView',
+        method: 'POST',
+        controller: imovelC,
+        action: 'visualizarImovelView',
+    },
+    {
         path: '/listarImoveis',
         method: 'POST',
         controller: imovelC,
         action: 'listarImoveis',
+    },
+    {
+        path: '/listarImoveisView',
+        method: 'POST',
+        controller: imovelC,
+        action: 'listarImoveisView',
     },
     {
         path: '/salvarAluguel',
