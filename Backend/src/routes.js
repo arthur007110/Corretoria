@@ -150,6 +150,12 @@ const rotas = [
         action: 'listarImoveisView',
     },
     {
+        path: '/buscaAvancadaImoveis',
+        method: 'POST',
+        controller: imovelC,
+        action: 'buscaAvancadaImoveis',
+    },
+    {
         path: '/salvarAluguel',
         method: 'POST',
         controller: aluguelC,
