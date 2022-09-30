@@ -37,3 +37,11 @@ function selecionarInquilino(cpf, nome){
     $("#cpfInquilino").val(cpf);
     $("#inquilinosDropdownButton").text(`Inquilino(${nome})`);
 }
+
+function editarAluguel(){
+    $.post("/atualizarAluguel", { idImovel: localStorage.getItem("idImovel") , cpfInquilino: localStorage.getItem("cpf") , 
+    data: $("#data").val(), valor: $("#valor").val() })
+    .done(function( data ) {
+        $("#subView").load("/Aluguel/Listar/index.html");
+    });
+}

@@ -3,10 +3,9 @@
     <body>
         Data do Aluguel: <span id="dataAluguel"></span> <br>
         Valor: <span id="valorAluguel"></span> <br>
-        Estadia: <sapn id="estadia"></span>
         <script>
             cpf = localStorage.getItem('cpf');
-            idAluguel = localStorage.getItem('idAluguel');
+            idAluguel = localStorage.getItem('id');
             $.post("/visualizarInquilino", {cpf})
             .done(function( data ) {
                 console.log(data);

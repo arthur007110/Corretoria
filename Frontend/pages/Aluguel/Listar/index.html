@@ -8,8 +8,8 @@
                 <th>Nome do Proprietário</th>
                 <th>Data do Aluguel</th>
                 <th>Valor</th>
-                <th>Estadia</th>
-                <th>Visualizar</th>
+                <th>Editar</th>
+                <th>Excluir</th>
             </tr>
         </table>
         <script>
@@ -23,15 +23,23 @@
                             $("<td>").text(aluguel.inquilino),
                             $("<td>").text(aluguel.corretor),
                             $("<td>").text(aluguel.proprietario),
-                            $("<td>").text(aluguel.data),
+                            $("<td>").text(new Date(aluguel.data).toLocaleDateString()),
                             $("<td>").text(aluguel.valor),
                             $("<td>").append(
-                                $("<button>").text("Visualizar").click(
+                                $("<button>").text("Editar").click(
                                     function(){
-                                        visualizarInquilino(aluguel.idImovel, aluguel.cpfInquilino)
+                                        editarAluguel(aluguel.idImovel, aluguel.cpfInquilino)
+                                    }
+                                )
+                            ),
+                            $("<td>").append(
+                                $("<button>").text("Excluir").click(
+                                    function(){
+                                        excluirAluguel(aluguel.idImovel, aluguel.cpfInquilino)
                                     }
                                 )
                             )
+
                         )
                     )
                 });
@@ -42,7 +50,26 @@
                 $(function(){
                     localStorage.setItem('cpf', cpfInquilino);
                     localStorage.setItem('idImovel', idImovel);
-                    $("#subView").load("/visualizarAluguel"); 
+                    $("#subView").load("/Aluguel/Visualizar/index.html"); 
+                });
+            }
+
+            function editarAluguel(idImovel, cpfInquilino){
+                // console.log(cpf);
+                $(function(){
+                    localStorage.setItem('cpf', cpfInquilino);
+                    localStorage.setItem('idImovel', idImovel);
+                    $("#subView").load("/Aluguel/Atualizar/index.html");
+                });
+            }
+
+            function excluirAluguel(idImovel, cpfInquilino){
+                //console.log(cpfInquilino);
+                $.post("/deletarAluguel", {idImovel, cpfInquilino})
+                $(function(){
+                    localStorage.setItem('cpf', cpfInquilino);
+                    localStorage.setItem('idImovel', idImovel);
+                    $("#subView").load("/Aluguel/Listar/index.html");
                 });
             }
         </script>
