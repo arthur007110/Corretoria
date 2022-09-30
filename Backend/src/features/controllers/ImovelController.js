@@ -137,6 +137,32 @@ function ImovelController(db){
         });
     }
 
+    function buscaAvancadaImoveis(options) {
+        const { busca, alugado } = options;
+
+        return new Promise((resolve, reject) => {
+            db.query( 
+                `
+                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, id, descricao, valor, alugado, rua, cep, bairro, numero, quartos, banheiros, area, tipo
+                    FROM imovel, pessoa as proprietario, pessoa as corretor
+                    WHERE imovel.cpfProprietario = proprietario.cpf
+                    AND imovel.cpfCorretor = corretor.cpf
+                    AND (descricao LIKE '%${busca}%'
+                    OR proprietario.nome LIKE '%${busca}%'
+                    OR corretor.nome LIKE '%${busca}%'
+                    OR rua LIKE '%${busca}%'
+                    OR bairro LIKE '%${busca}%'
+                    OR numero LIKE '%${busca}%')
+                    AND alugado = ${alugado}
+                `,
+                (err, result) =>{
+                    if(err) reject(err);
+                    resolve(result);
+                }
+            );
+        });
+    }
+
     return{
         salvarImovel,
         deletarImovel,
@@ -144,7 +170,8 @@ function ImovelController(db){
         listarImoveis,
         listarImoveisView,
         visualizarImovel,
-        visualizarImovelView
+        visualizarImovelView,
+        buscaAvancadaImoveis
     }
 
 }
