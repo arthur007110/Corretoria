@@ -2,16 +2,16 @@
 function AluguelController(db){
 
     function salvarAluguel(aluguel) {
-        const { idImovel, cpfInquilino, dataAluguel, valorAluguel } = aluguel;
+        const { idImovel, cpfInquilino, data, valor } = aluguel;
 
         console.log(aluguel);
-        if(!idImovel || !cpfInquilino || !dataAluguel || !valorAluguel) throw new Error('atributos obrigatórios não preenchidos');
+        if(!idImovel || !cpfInquilino || !data || !valor) throw new Error('atributos obrigatórios não preenchidos');
 
         const parms = [
             {name: 'idImovel', value: idImovel},
             {name: 'cpfInquilino', value: cpfInquilino},
-            {name: 'dataAluguel', value: descricao},
-            {name: 'valorAluguel', value: valorAluguel},
+            {name: 'data', value: data},
+            {name: 'valor', value: valor},
         ];
 
         try{

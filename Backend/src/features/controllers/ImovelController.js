@@ -124,7 +124,7 @@ function ImovelController(db){
         return new Promise((resolve, reject) => {
             db.query( 
                 `
-                    SELECT id
+                    SELECT id, valor
                     FROM imovel
                     WHERE alugado = 0
                 `,

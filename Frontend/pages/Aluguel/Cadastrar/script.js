@@ -5,7 +5,7 @@ $.post("/listarImoveisLivres")
         const imovelButton = $("<li></li>").append(
             $("<button></button>", {type: 'button'}).text(imovel.id).click(
                 function(){
-                    selecionarImovel(imovel.id);
+                    selecionarImovel(imovel.id, imovel.valor);
                 }
             )
         )
@@ -13,9 +13,10 @@ $.post("/listarImoveisLivres")
     });
 });
 
-function selecionarImovel(id){
+function selecionarImovel(id, valor){
     $("#idImovel").val(id);
     $("#imovelDropdownButton").text(`Imovel(${id})`);
+    $("#valor").val(valor);
 }
 
 $.post("/listarInquilinos")
@@ -36,4 +37,16 @@ $.post("/listarInquilinos")
 function selecionarInquilino(cpf, nome){
     $("#cpfInquilino").val(cpf);
     $("#inquilinosDropdownButton").text(`Inquilino(${nome})`);
+}
+
+function salvarAluguel() {
+    $.post("/salvarAluguel", {
+        idImovel: $("#idImovel").val(),
+        cpfInquilino: $("#cpfInquilino").val(),
+        data: $("#data").val(),
+        valor: $("#valor").val()
+    })
+    .done(function( data ) {
+        $("#subView").load("/Aluguel/Listar/index.html");
+    });
 }

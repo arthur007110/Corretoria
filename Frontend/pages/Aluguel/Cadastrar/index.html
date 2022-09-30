@@ -4,11 +4,12 @@
     </head>
     <body>
         <h2>Página de cadastrar Aluguel</h2>
-        <form action="/salvarAluguel" method="post">
-            <label for="dataAluguel">Data do Aluguel:</label>
-            <input type="date" name="dataAluguel" id="dataAluguel"><br>
-            <label for="valorAluguel">Valor do Aluguel:</label>
-            <input type="text" name="valorAluguel" id="valorAluguel"><br>
+        <form method="post">
+            <label for="data">Data do Aluguel:</label>
+            <input type="date" name="data" id="data"><br>
+            <label for="valor">Valor do Aluguel:</label>
+            <input disabled type="text" name="valor" id="valor"><br>
+            <input type="text" name="idImovel" id="idImovel">
             <div class="btn-group">
                 <button class="dropdown" type="button" id="imovelDropdownButton">ID do Imóvel</button>
                 <ul class="dropdown-menu" id="imovelDropdown"></ul>
@@ -18,7 +19,7 @@
                 <button class="dropdown" type="button" id="inquilinosDropdownButton">Inquilino</button>
                 <ul class="dropdown-menu" id="inquilinosDropdown"></ul>
             </div><br>
-            <button>Cadastrar</button>
+            <button type="button" onclick="salvarAluguel()">Cadastrar</button>
         </form>
         <script src="/Aluguel/Cadastrar/script.js"></script>
     </body>
