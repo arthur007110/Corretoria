@@ -1,23 +1,45 @@
 <html>
-    <h2>Página de visuaizar Inquilino</h2>
     <body>
-        Nome: <span id="nomeInquilino"></span> <br>
-        CPF: <span id="cpfInquilino"></span> <br>
-        Telefones:
-        <ul id="telefonesInquilino"></ul>
+        <h2>Página de visualizar Imóvel</h2>
+        <div id="imovel">
+            <p>Proprietário: <span id="proprietario"></span></p>
+            <p>Corretor: <span id="corretor"></span></p>
+            <p>Valor: <span id="valor"></span></p>
+            <p>Alugado: <span id="alugado"></span></p>
+            <p>Cidade: <span id="cidade"></span></p>
+            <p>Estado: <span id="estado"></span></p>
+            <p>Bairro: <span id="bairro"></span></p>
+            <p>Endereço: <span id="endereco"></span></p>
+            <p>Número: <span id="numero"></span></p>
+            <p>CEP: <span id="cep"></span></p>
+            <p>Tipo: <span id="tipo"></span></p>
+            <p>Descrição: <span id="descricao"></span></p>
+            <p>Área: <span id="area"></span></p>
+            <p>Quartos: <span id="quartos"></span></p>
+            <p>Banheiros: <span id="banheiros"></span></p>
+            <p>Garagem: <span id="garagem"></span></p>
+            <p>Quintal: <span id="quintal"></span></p>
+        </div>
         <script>
-            cpf = localStorage.getItem('cpf');
-            console.log(cpf);
-            $.post("visualizarInquilino", {cpf})
+            $.post("/visualizarImovelView", {id: localStorage.getItem('imovelId')})
             .done(function( data ) {
                 console.log(data);
-                $("#nomeInquilino").text(data.nome);
-                $("#cpfInquilino").text(data.cpf);
-                data.telefones.forEach(telefone => {
-                    $("#telefonesInquilino").append(
-                        $("<li>").text(telefone.numero)
-                    )
-                });
+                $("#proprietario").text(data.proprietario);
+                $("#corretor").text(data.corretor);
+                $("#valor").text(data.valor);
+                $("#cidade").text(data.cidade);
+                $("#estado").text(data.estado);
+                $("#bairro").text(data.bairro);
+                $("#endereco").text(data.rua);
+                $("#numero").text(data.numero);
+                $("#cep").text(data.cep);
+                $("#tipo").text(data.tipo);
+                $("#descricao").text(data.descricao);
+                $("#area").text(data.area);
+                $("#quartos").text(data.quartos);
+                $("#banheiros").text(data.banheiros);
+                $("#garagem").text(data.garagem);
+                $("#quintal").text(data.quintal);
             });
         </script>
     </body>

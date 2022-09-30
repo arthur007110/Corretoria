@@ -1,26 +1,38 @@
 <html>
     <body>
         <h2>Página de listar Inquilino</h2>
-        <table id="tabelaInquilinos">
+        <div>
+            <h3>Busca Avançada</h3>
+            <input type="text" id="inputAvancado">
+            <button>Buscar</button>
+        </div>
+        <table id="tabelaImovel">
             <tr>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Visualizar</th>
+                <th>ID</th>
+                <th>Proprietario</th>
+                <th>Corretor</th>
+                <th>Alugado</th>
+                <th>Valor</th>
+                <th>Ação</th>
             </tr>
         </table>
         <script>
-            $.post("listarInquilinos")
+            $.post("/listarImoveisView")
             .done(function( data ) {
-                data.forEach(inquilino => {
+                console.log(data);
+                data.forEach(imovel => {
                     const tr = document.createElement('tr');
-                    $("#tabelaInquilinos").append(
+                    $("#tabelaImovel").append(
                         $("<tr>").append(
-                            $("<td>").text(inquilino.nome),
-                            $("<td>").text(inquilino.cpf),
+                            $("<td>").text(imovel.id),
+                            $("<td>").text(imovel.proprietario),
+                            $("<td>").text(imovel.corretor),
+                            $("<td>").text(imovel.alugado ? "Sim" : "Não"),
+                            $("<td>").text(`R$ ${imovel.valor.toString().replace(".", ",")}`),
                             $("<td>").append(
                                 $("<button>").text("Visualizar").click(
                                     function(){
-                                        visualizarInquilino(inquilino.cpf)
+                                        visualizarImovel(imovel.id);
                                     }
                                 )
                             )
@@ -29,11 +41,10 @@
                 });
             });
 
-            function visualizarInquilino(cpf){
-                // console.log(cpf);
+            function visualizarImovel(id){
                 $(function(){
-                    localStorage.setItem('cpf', cpf);
-                    $("#subView").load("/visualizarInquilino?cpf=" + cpf); 
+                    localStorage.setItem('imovelId', id);
+                    $("#subView").load("/Imovel/Visualizar/index.html"); 
                 });
             }
         </script>
