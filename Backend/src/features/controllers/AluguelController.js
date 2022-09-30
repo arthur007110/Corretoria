@@ -42,13 +42,13 @@ function AluguelController(db){
 
     function atualizarAluguel(aluguel) {
         const { idImovel, cpfInquilino, data, valor } = aluguel;
-
+        console.log(aluguel);
         if(!idImovel || !cpfInquilino) throw new Error('idImovel e CPF são obrigatórios');
 
         const params = [];
-        if(data) conditions.push({name: 'data', value: data});
-        if(valor) conditions.push({name: 'valor', value: valor});
-
+        if(data) params.push({name: 'data', value: data});
+        if(valor) params.push({name: 'valor', value: valor});
+        if(!params.length) throw new Error('Nenhum atributo para atualizar');
         const conditions = [
             {name: 'idImovel', value: idImovel},
             {name: 'cpfInquilino', value: cpfInquilino},
