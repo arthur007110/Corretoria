@@ -37,3 +37,28 @@ function selecionarCorretor(cpf, nome){
     $("#cpfCorretor").val(cpf);
     $("#corretoresDropdownButton").text(`Corretor(${nome})`);
 }
+
+function salvarImovel(){
+    const imovel = {
+        descricao: $("#descricao").val(),
+        valor: $("#valor").val(),
+        cep: $("#cep").val(),
+        rua: $("#rua").val(),
+        bairro: $("#bairro").val(),
+        numero: $("#numero").val(),
+        cidade: $("#cidade").val(),
+        estado: $("#estado").val(),
+        quartos: $("#quartos").val(),
+        banheiros: $("#banheiros").val(),
+        garagem: $("#garagem").val(),
+        quintal: $("#quintal").val(),
+        area: $("#area").val(),
+        tipo: $("#tipo").val(),
+        cpfProprietario: $("#cpfProprietario").val(),
+        cpfCorretor: $("#cpfCorretor").val(),
+    }
+    $.post("/salvarImovel", imovel)
+    .done(function( data ) {
+        $("#subView").load("/Imovel/Listar/index.html");
+    });
+}

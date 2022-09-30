@@ -1,11 +1,13 @@
 <html>
     <body>
-        <h2>Página de listar Proprietários</h2>
+        <h2>Página de listar Proprietarios</h2>
         <table id="tabelaProprietarios">
             <tr>
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>Visualizar</th>
+                <th>Editar</th>
+                <th>Excluir</th>
             </tr>
         </table>
         <script>
@@ -23,6 +25,20 @@
                                         visualizarProprietario(proprietario.cpf)
                                     }
                                 )
+                            ),
+                            $("<td>").append(
+                                $("<button>").text("Editar").click(
+                                    function(){
+                                        atualizarProprietario(proprietario.cpf)
+                                    }
+                                )
+                            ),
+                            $("<td>").append(
+                                $("<button>").text("Excluir").click(
+                                    function(){
+                                        deletarProprietario(proprietario.cpf)
+                                    }
+                                )
                             )
                         )
                     )
@@ -32,7 +48,21 @@
             function visualizarProprietario(cpf){
                 $(function(){
                     localStorage.setItem('cpf', cpf);
-                    $("#subView").load("/visualizarProprietario?cpf=" + cpf); 
+                    $("#subView").load("/Proprietario/Visualizar/index.html");
+                });
+            }
+
+            function deletarProprietario(cpf)   {
+                $.post("/deletarProprietario", {cpf: cpf})
+                .done(function( data ) {
+                    $("#subView").load("/Proprietario/Listar/index.html"); 
+                });
+            }
+
+            function atualizarProprietario(cpf){
+                $(function(){
+                    localStorage.setItem('cpf', cpf);
+                    $("#subView").load("/Proprietario/Atualizar/index.html"); 
                 });
             }
         </script>

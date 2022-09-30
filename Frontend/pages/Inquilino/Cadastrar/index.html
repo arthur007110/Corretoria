@@ -1,14 +1,24 @@
 <html>
     <body>
         <h2>Página de cadastrar Inquilino</h2>
-        <form action="/salvarInquilino" method="post">
+        <form method="post" id="formularioSalvar">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome"><br>
             <label for="cpf">CPF:</label>
             <input type="text" name="cpf" id="cpf"><br>
             <label for="telefone">Telefone:</label>
             <input type="text" name="telefones[]" id="telefone">
-            <button>Cadastrar</button>
+            <button onclick="salvarInquilino()" type="button">Cadastrar</button>
         </form>
+
+        <script>
+            function salvarInquilino(){
+                $.post("/salvarInquilino", {cpf: $("#cpf").val(), nome: $("#nome").val(), telefones: $("#telefone").val().split(",")})
+                .done(function( data ) {
+                    $("#subView").load("/Inquilino/Listar/index.html");
+                });
+            }
+            
+        </script>
     </body>
 </html>

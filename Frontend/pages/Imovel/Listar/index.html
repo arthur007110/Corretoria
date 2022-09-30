@@ -13,7 +13,9 @@
                 <th>Corretor</th>
                 <th>Alugado</th>
                 <th>Valor</th>
-                <th>Ação</th>
+                <th>Visualizar</th>
+                <th>Editar</th>
+                <th>Deletar</th>
             </tr>
         </table>
         <script>
@@ -34,8 +36,22 @@
                                     function(){
                                         visualizarImovel(imovel.id);
                                     }
-                                )
-                            )
+                                ),
+                            ),
+                            $("<td>").append(
+                                $("<button>").text("Editar").click(
+                                    function(){
+                                        editarImovel(imovel.id);
+                                    }
+                                ),
+                            ),
+                            $("<td>").append(
+                                $("<button>").text("Deletar").click(
+                                    function(){
+                                        deletarImovel(imovel.id);
+                                    }
+                                ),
+                            ),
                         )
                     )
                 });
@@ -45,6 +61,22 @@
                 $(function(){
                     localStorage.setItem('imovelId', id);
                     $("#subView").load("/Imovel/Visualizar/index.html"); 
+                });
+            }
+
+            function editarImovel(id){
+                $(function(){
+                    localStorage.setItem('imovelId', id);
+                    $("#subView").load("/Imovel/Atualizar/index.html"); 
+                });
+            }
+
+            function deletarImovel(id){
+                $(function(){
+                    $.post("/deletarImovel", {id: id})
+                    .done(function( data ) {
+                        $("#subView").load("/Imovel/Listar/index.html"); 
+                    });
                 });
             }
         </script>

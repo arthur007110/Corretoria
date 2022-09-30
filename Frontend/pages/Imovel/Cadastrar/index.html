@@ -4,7 +4,7 @@
     </head>
     <body>
         <h2>Página de cadastrar Imovel</h2>
-        <form action="/salvarImovel" method="post">
+        <form method="post">
             <label for="descricao">Descricao:</label>
             <input type="text" name="descricao" id="descricao"><br>
             <label for="valor">Valor:</label>
@@ -43,7 +43,7 @@
                 <button class="dropdown" type="button" id="corretoresDropdownButton">Corretor</button>
                 <ul class="dropdown-menu" id="corretoresDropdown"></ul>
             </div><br>
-            <button>Cadastrar</button>
+            <button type="button" onclick="salvarImovel()">Cadastrar</button>
         </form>
         <script src="/Imovel/Cadastrar/script.js"></script>
     </body>

@@ -1,14 +1,24 @@
 <html>
     <body>
         <h2>Página de cadastrar Corretor</h2>
-        <form action="/salvarCorretor" method="post">
+        <form method="post" id="formularioSalvar">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome"><br>
             <label for="cpf">CPF:</label>
             <input type="text" name="cpf" id="cpf"><br>
             <label for="telefone">Telefone:</label>
             <input type="text" name="telefones[]" id="telefone">
-            <button>Cadastrar</button>
+            <button onclick="salvarCorretor()" type="button">Cadastrar</button>
         </form>
+
+        <script>
+            function salvarCorretor(){
+                $.post("/salvarCorretor", {cpf: $("#cpf").val(), nome: $("#nome").val(), telefones: $("#telefone").val().split(",")})
+                .done(function( data ) {
+                    $("#subView").load("/Corretor/Listar/index.html");
+                });
+            }
+            
+        </script>
     </body>
 </html>

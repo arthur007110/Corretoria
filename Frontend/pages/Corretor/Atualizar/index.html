@@ -1,14 +1,22 @@
 <html>
     <body>
         <h2>Página de atualizar Corretor</h2>
-        <form action="/atualizarCorretor" method="post">
+        <form method="post">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome"><br>
-            <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" id="cpf"><br>
             <label for="telefone">Telefone:</label>
             <input type="text" name="telefones[]" id="telefone">
-            <button>Atualizar</button>
+            <button type="button" onclick="atualizarCorretor()">Atualizar</button>
         </form>
+
+
+        <script>
+            function atualizarCorretor(){
+                $.post("/atualizarCorretor", {cpf: localStorage.getItem('cpf'), nome: $("#nome").val(), telefones: $("#telefone").val().split(",")})
+            .done(function( data ) {
+                $("#subView").load("/Corretor/Listar/index.html"); 
+            });
+            } 
+        </script>
     </body>
 </html>

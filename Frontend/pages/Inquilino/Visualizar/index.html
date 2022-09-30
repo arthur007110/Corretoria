@@ -1,10 +1,11 @@
 <html>
-    <h2>Página de visuaizar Inquilino</h2>
+    <h2>Página de visualizar Inquilino</h2>
     <body>
         Nome: <span id="nomeInquilino"></span> <br>
         CPF: <span id="cpfInquilino"></span> <br>
         Telefones:
         <ul id="telefonesInquilino"></ul>
+        <button onclick="voltar()">Voltar</button>
         <script>
             cpf = localStorage.getItem('cpf');
             console.log(cpf);
@@ -19,6 +20,12 @@
                     )
                 });
             });
+
+            function voltar(){
+                $(function(){
+                    $("#subView").load("/Inquilino/Listar/index.html"); 
+                });
+            }
         </script>
     </body>
 </html>
