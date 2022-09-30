@@ -115,7 +115,7 @@ function AluguelController(db){
         return new Promise((resolve, reject) => {
             db.query(
                 `
-                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, inquilino.nome as inquilino, data, aluguel.valor as valor
+                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, inquilino.nome as inquilino, idImovel, cpfInquilino, data, aluguel.valor as valor
                     FROM aluguel, imovel, pessoa as proprietario, pessoa as corretor, pessoa as inquilino
                     WHERE aluguel.cpfInquilino = inquilino.cpf
                     AND aluguel.idImovel = imovel.id
