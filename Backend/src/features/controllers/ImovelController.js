@@ -77,8 +77,37 @@ function ImovelController(db){
 
             db.sellectOne('imovel', params, (err, result) =>{
                 if(err) reject(err);
-                resolve(result);
+                if(result.length > 0){
+                    resolve(result[0]);
+                    return;
+                }
+                else throw new Error('Imóvel não encontrado');
             });
+        });
+    }
+
+    function visualizarImovelView(imovel) {
+        const { id } = imovel;
+        return new Promise((resolve, reject) => {
+
+            db.query(
+                `
+                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, id, descricao, valor, alugado, rua, cep, bairro, numero, quartos, banheiros, area, tipo
+                    FROM imovel, pessoa as proprietario, pessoa as corretor
+                    WHERE id = ${id}
+                    AND imovel.cpfProprietario = proprietario.cpf
+                    AND imovel.cpfCorretor = corretor.cpf
+                    LIMIT 1
+                `,
+                (err, result) =>{
+                    if(err) reject(err);
+                    if(result.length > 0){
+                        resolve(result[0]);
+                        return;
+                    }
+                    else throw new Error('Imóvel não encontrado');
+                }
+            );
         });
     }
 
@@ -91,12 +120,31 @@ function ImovelController(db){
         });
     }
 
+    function listarImoveisView() {
+        return new Promise((resolve, reject) => {
+            db.query( 
+                `
+                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, id, descricao, valor, alugado, rua, cep, bairro, numero, quartos, banheiros, area, tipo
+                    FROM imovel, pessoa as proprietario, pessoa as corretor
+                    WHERE imovel.cpfProprietario = proprietario.cpf
+                    AND imovel.cpfCorretor = corretor.cpf
+                `,
+                (err, result) =>{
+                    if(err) reject(err);
+                    resolve(result);
+                }
+            );
+        });
+    }
+
     return{
         salvarImovel,
         deletarImovel,
         atualizarImovel,
         listarImoveis,
+        listarImoveisView,
         visualizarImovel,
+        visualizarImovelView
     }
 
 }
