@@ -57,20 +57,21 @@ function ProprietarioController(db){
     function atualizarProprietario(proprietario) {
         const { cpf, nome, telefones } = proprietario;
 
-        if(!nome) throw new Error('Nome é obrigatório');
+        if(!cpf) throw new Error('Nome é obrigatório');
 
-        const params = [
-            {name: 'nome', value: nome},
-        ];
+        const params = [];
+        if(nome) params.push({name: 'nome', value: nome});
 
         const conditions = [
             {name: 'cpf', value: cpf},
         ]
 
-        db.update('pessoa', params, conditions, (err) =>{
-            if(err) throw err;
-            console.log('Registro atualizado com sucesso');
-        });
+        if(params && params.length > 0) {
+            db.update('pessoa', params, conditions, (err) =>{
+                if(err) throw err;
+                console.log('Registro atualizado com sucesso');
+            });
+        }
 
         if(telefones) {
             telefones.forEach(telefone => {

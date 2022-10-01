@@ -52,7 +52,7 @@ function buscar(){
                             function(){
                                 deletarImovel(imovel.id);
                             }
-                        ),
+                        ).prop("disabled",true),
                     ),
                 )
             )
@@ -91,7 +91,7 @@ $.post("/listarImoveisView")
                         function(){
                             deletarImovel(imovel.id);
                         }
-                    ),
+                    ).prop("disabled", imovel.alugado),
                 ),
             )
         )
