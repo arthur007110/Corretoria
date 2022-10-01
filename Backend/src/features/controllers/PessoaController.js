@@ -69,6 +69,18 @@ function PessoaController(db){
     function listarCorretores() {
        return CorretorC.listarCorretores();
     }
+
+    function listarNegociosCorretores() {
+       return CorretorC.listarNegociosCorretores();
+    }
+
+    function listarValorBrutoCorretor() {
+       return CorretorC.listarValorBrutoCorretor();
+    }
+
+    function listarAlugueisCorretor() {
+       return CorretorC.listarAlugueisCorretor();
+    }
     
     return{
         salvarProprietario,
@@ -85,7 +97,10 @@ function PessoaController(db){
         deletarCorretor,
         atualizarCorretor,
         listarCorretores,
-        visualizarCorretor
+        visualizarCorretor,
+        listarNegociosCorretores,
+        listarValorBrutoCorretor,
+        listarAlugueisCorretor,
     }
 }
 

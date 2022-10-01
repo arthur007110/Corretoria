@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <h2>Valor Bruto por Corretor</h2>
+        <table id="tabelaRelatorio">
+            <tr>
+                <th>Nome do corretor</th>
+                <th>Valor bruto total alugado</th>
+            </tr>
+        </table>
+        <script>
+            $.post("/listarValorBrutoCorretor")
+            .done(function( data ) {
+                data.forEach(resultado => {
+                    $("#tabelaRelatorio").append(
+                        $("<tr>").append(
+                            $("<td>").text(resultado.corretor),
+                            $("<td>").text(Number(resultado.valorTotalAluguel).toFixed(2)),
+                        )
+                    )
+                });
+            });
+        </script>
+    </body>
+</html>

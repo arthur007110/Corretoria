@@ -108,6 +108,24 @@ const rotas = [
         action: 'visualizarCorretor',
     },
     {
+        path: '/listarNegociosCorretores',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'listarNegociosCorretores',
+    },
+    {
+        path: '/listarValorBrutoCorretor',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'listarValorBrutoCorretor',
+    },
+    {
+        path: '/listarAlugueisCorretor',
+        method: 'POST',
+        controller: pessoaC,
+        action: 'listarAlugueisCorretor',
+    },
+    {
         path: '/salvarImovel',
         method: 'POST',
         controller: imovelC,

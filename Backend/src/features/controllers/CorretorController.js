@@ -127,12 +127,63 @@ function CorretorController(db){
         });
     }
 
+    function listarNegociosCorretores() {
+        return new Promise((resolve, reject) => {
+            db.query(
+                `
+                    SELECT *
+                    FROM negociosCorretor
+                    ORDER BY imoveisNegociados DESC
+                `,
+                (err, result) =>{
+                    if(err) throw(err);
+                    resolve(result);
+                }
+            );
+        });
+    }
+
+    function listarValorBrutoCorretor() {
+        return new Promise((resolve, reject) => {
+            db.query(
+                `
+                    SELECT *
+                    FROM valorBrutoCorretor
+                    ORDER BY valorTotalAluguel DESC
+                `,
+                (err, result) =>{
+                    if(err) throw(err);
+                    resolve(result);
+                }
+            );
+        });
+    }
+
+    function listarAlugueisCorretor() {
+        return new Promise((resolve, reject) => {
+            db.query(
+                `
+                    SELECT *
+                    FROM alugueisCorretor
+                    ORDER BY imoveisAlugados DESC
+                `,
+                (err, result) =>{
+                    if(err) throw(err);
+                    resolve(result);
+                }
+            );
+        });
+    }
+
     return{
         salvarCorretor,
         deletarCorretor,
         atualizarCorretor,
         listarCorretores,
-        visualizarCorretor
+        visualizarCorretor,
+        listarNegociosCorretores,
+        listarValorBrutoCorretor,
+        listarAlugueisCorretor
     }
 
 
