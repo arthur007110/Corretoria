@@ -6,6 +6,7 @@ nomes = [
     'Pedro', 'Paulo', 'Manoel', 'Raimundo', 'Joaquim', 'Miguel', 'Luiz',
     'Marcos', 'Ricardo', 'Jorge', 'Alberto', 'Alexandre', 'Cleber',
     'Cleiton', 'Cleide', 'Cleiton', 'Cleide', 'Cleiton', 'Cleide',
+    'Joana', 'Joaquina', 'Aline', 'Alessandra', 'Alessandro',
 ]
 sobrenomes = [
     'Silva', 'Santos', 'Souza', 'Oliveira', 'Pereira', 'Rodrigues',
@@ -29,8 +30,8 @@ def generateCPF():
         cpf += str(random.randint(0, 9))
     return cpf
 
-def popularCorretores():
-    for i in range(10):
+def popularCorretores(qtd):
+    for i in range(qtd):
         nome = nomes[random.randint(0, len(nomes) - 1)]
         sobrenome = sobrenomes[random.randint(0, len(sobrenomes) - 1)]
         nome_completo = nome + ' ' + sobrenome
@@ -41,8 +42,8 @@ def popularCorretores():
         sqlCommand = 'INSERT INTO pessoa (cpf, nome, tipoPessoa) VALUES ("'+ cpf +'", "' + nome_completo + '", "corretor");'
         corretores[cpf] = sqlCommand
 
-def popularProprietarios():
-    for _ in range(10):
+def popularProprietarios(qtd):
+    for _ in range(qtd):
         nome = nomes[random.randint(0, len(nomes) - 1)]
         sobrenome = sobrenomes[random.randint(0, len(sobrenomes) - 1)]
         nome_completo = nome + ' ' + sobrenome
@@ -53,8 +54,8 @@ def popularProprietarios():
         sqlCommand = 'INSERT INTO pessoa (cpf, nome, tipoPessoa) VALUES ("'+ cpf +'", "' + nome_completo + '", "proprietario");'
         proprietarios[cpf] = sqlCommand
 
-def popularInquilinos():
-    for _ in range(10):
+def popularInquilinos(qtd):
+    for _ in range(qtd):
         nome = nomes[random.randint(0, len(nomes) - 1)]
         sobrenome = sobrenomes[random.randint(0, len(sobrenomes) - 1)]
         nome_completo = nome + ' ' + sobrenome
@@ -65,23 +66,23 @@ def popularInquilinos():
         sqlCommand = 'INSERT INTO pessoa (cpf, nome, tipoPessoa) VALUES ("'+ cpf +'", "' + nome_completo + '", "inquilino");'
         inquilinos[cpf] = sqlCommand
 
-def popularImoveis():
-    for i in range(10):
-        id = str(i)
+def popularImoveis(qtd):
+    for i in range(qtd):
+        id = str(i+1)
         iProprietario = random.choice(list(proprietarios))
         iCorretor = random.choice(list(corretores))
         print(iProprietario)
         print(iCorretor)
         alugado = '0'
         descricao = 'Imóvel de teste'
-        valor = str(random.random() * 10000)
+        valor = str(round(random.random() * 10000, 2))
         cep = str(random.randint(10000000, 99999999))
-        numero = str(random.randint(1, 9999))
+        numero = str(random.randint(1, 999))
         rua = 'Rua de teste'
         bairro = 'Bairro de teste'
         quartos = str(random.randint(1, 5))
         banheiros = str(random.randint(1, 5))
-        area = str(random.random() * 100)
+        area = str(random.randint(15, 100))
         garagem = str(random.randint(0, 1))
         quintal = str(random.randint(0, 1))
         tipo = random.choices(['casa', 'apartamento', 'terreno', 'condominio'])[0]
@@ -89,8 +90,8 @@ def popularImoveis():
         imoveis[id] = sqlCommand
         imoveisValores[id] = valor
 
-def popularAlugueis():
-    for _ in range(10):
+def popularAlugueis(qtd):
+    for _ in range(qtd):
         imovel = random.choice(list(imoveis))
         inquilino = random.choice(list(inquilinos))
         dataInicio = '2020-01-01'
@@ -99,11 +100,11 @@ def popularAlugueis():
         alugueis[imovel] = sqlCommand
 
 f = open("popularBancoCorretoria.txt", "w")
-popularCorretores()
-popularProprietarios()
-popularInquilinos()
-popularImoveis()
-popularAlugueis()
+popularCorretores(100)
+popularProprietarios(100)
+popularInquilinos(100)
+popularImoveis(200)
+popularAlugueis(50)
 for i in corretores:
     f.write(corretores[i] + '\n')
 for i in proprietarios:
