@@ -52,7 +52,7 @@ function buscar(){
                             function(){
                                 deletarImovel(imovel.id);
                             }
-                        ).prop("disabled",true),
+                        ).prop("disabled", imovel.alugado),
                     ),
                 )
             )

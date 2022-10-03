@@ -14,20 +14,6 @@
             <input type="text" name="bairro" id="bairro"><br>
             <label for="numero">numero:</label>
             <input type="text" name="numero" id="numero"><br>
-            <label for="cidade">cidade:</label>
-            <input type="text" name="cidade" id="cidade"><br>
-            <label for="estado">estado:</label>
-            <input type="text" name="estado" id="estado"><br>
-            <label for="quartos">quartos:</label>
-            <input type="text" name="quartos" id="quartos"><br>
-            <label for="banheiros">banheiros:</label>
-            <input type="text" name="banheiros" id="banheiros"><br>
-            <label for="garagem">garagem:</label>
-            <input type="text" name="garagem" id="garagem"><br>
-            <label for="area">area:</label>
-            <input type="text" name="area" id="area"><br>
-            <label for="tipo">tipo:</label>
-            <input type="text" name="tipo" id="tipo"> <br>
             <button type="button" onclick="atualizarImovel()">Atualizar</button>
         </form>
 
@@ -35,9 +21,7 @@
         <script>
             function atualizarImovel(){
                 $.post("/atualizarImovel", {id: localStorage.getItem('imovelId'), descricao: $("#descricao").val(), valor: $("#valor").val(), 
-                cep: $("#cep").val(), rua: $("#rua").val(), bairro: $("#bairro").val(), numero: $("#numero").val(), cidade: $("#cidade").val(),
-                estado: $("#estado").val(), quartos: $("#quartos").val(), banheiros: $("#banheiros").val(), garagem: $("#garagem").val(), 
-                area: $("#area").val(), tipo: $("#tipo").val()})
+                cep: $("#cep").val(), rua: $("#rua").val(), bairro: $("#bairro").val(), numero: $("#numero").val()})
             .done(function( data ) {
                 $("#subView").load("/Imovel/Listar/index.html"); 
             });

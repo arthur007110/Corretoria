@@ -92,7 +92,7 @@ function ImovelController(db){
 
             db.query(
                 `
-                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, id, descricao, valor, alugado, rua, cep, bairro, numero, quartos, banheiros, area, tipo
+                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, id, descricao, valor, alugado, rua, cep, bairro, numero
                     FROM imovel, pessoa as proprietario, pessoa as corretor
                     WHERE id = ${id}
                     AND imovel.cpfProprietario = proprietario.cpf
@@ -140,7 +140,7 @@ function ImovelController(db){
         return new Promise((resolve, reject) => {
             db.query( 
                 `
-                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, id, descricao, valor, alugado, rua, cep, bairro, numero, quartos, banheiros, area, tipo
+                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, id, descricao, valor, alugado, rua, cep, bairro, numero
                     FROM imovel, pessoa as proprietario, pessoa as corretor
                     WHERE imovel.cpfProprietario = proprietario.cpf
                     AND imovel.cpfCorretor = corretor.cpf
@@ -159,7 +159,7 @@ function ImovelController(db){
         return new Promise((resolve, reject) => {
             db.query( 
                 `
-                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, id, descricao, valor, alugado, rua, cep, bairro, numero, quartos, banheiros, area, tipo
+                    SELECT proprietario.nome as proprietario, corretor.nome as corretor, id, descricao, valor, alugado, rua, cep, bairro, numero
                     FROM imovel, pessoa as proprietario, pessoa as corretor
                     WHERE imovel.cpfProprietario = proprietario.cpf
                     AND imovel.cpfCorretor = corretor.cpf

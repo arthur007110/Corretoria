@@ -2,7 +2,7 @@ import random
 from typing import Dict
 
 nomes = [
-    'Ana', 'Maria', 'João', 'José', 'Antonio', 'Francisco', 'Carlos',
+    'Ana', 'Maria', 'Joao', 'Jose', 'Antonio', 'Francisco', 'Carlos',
     'Pedro', 'Paulo', 'Manoel', 'Raimundo', 'Joaquim', 'Miguel', 'Luiz',
     'Marcos', 'Ricardo', 'Jorge', 'Alberto', 'Alexandre', 'Cleber',
     'Cleiton', 'Cleide', 'Cleiton', 'Cleide', 'Cleiton', 'Cleide',
@@ -10,11 +10,11 @@ nomes = [
 ]
 sobrenomes = [
     'Silva', 'Santos', 'Souza', 'Oliveira', 'Pereira', 'Rodrigues',
-    'Almeida', 'Nascimento', 'Lima', 'Ferreira', 'Martins', 'Araújo',
+    'Almeida', 'Nascimento', 'Lima', 'Ferreira', 'Martins', 'Araujo',
     'Ribeiro', 'Gomes', 'Carvalho', 'Costa', 'Correia', 'Alves',
     'Mendes', 'Dias', 'Rocha', 'Neves', 'Barros', 'Moraes', 'Reis',
-    'Gonçalves', 'Moreira', 'Nogueira', 'Azevedo', 'Teixeira',
-    'Vieira', 'Fernandes', 'Barbosa', 'Gonçalves',
+    'Goncalves', 'Moreira', 'Nogueira', 'Azevedo', 'Teixeira',
+    'Vieira', 'Fernandes', 'Barbosa', 'Goncalves',
 ]
 
 corretores = dict()
@@ -71,22 +71,14 @@ def popularImoveis(qtd):
         id = str(i+1)
         iProprietario = random.choice(list(proprietarios))
         iCorretor = random.choice(list(corretores))
-        print(iProprietario)
-        print(iCorretor)
         alugado = '0'
-        descricao = 'Imóvel de teste'
+        descricao = 'Imovel de teste'
         valor = str(round(random.random() * 10000, 2))
         cep = str(random.randint(10000000, 99999999))
         numero = str(random.randint(1, 999))
         rua = 'Rua de teste'
         bairro = 'Bairro de teste'
-        quartos = str(random.randint(1, 5))
-        banheiros = str(random.randint(1, 5))
-        area = str(random.randint(15, 100))
-        garagem = str(random.randint(0, 1))
-        quintal = str(random.randint(0, 1))
-        tipo = random.choices(['casa', 'apartamento', 'terreno', 'condominio'])[0]
-        sqlCommand = 'INSERT INTO imovel (id, cpfProprietario, cpfCorretor, alugado, descricao, valor, cep, numero, bairro, rua, quartos, banheiros, area, garagem, quintal, tipo) VALUES ("'+ id +'", "' + iProprietario + '", "' + iCorretor + '", "' + alugado + '", "' + descricao + '", "' + valor + '", "' + cep + '", "' + numero + '", "' + bairro + '", "' + rua + '", "' + quartos + '", "' + banheiros + '", "' + area + '", "' + garagem + '", "' + quintal + '", "' + tipo + '");'
+        sqlCommand = 'INSERT INTO imovel (id, cpfProprietario, cpfCorretor, alugado, descricao, valor, cep, numero, bairro, rua) VALUES ("'+ id +'", "' + iProprietario + '", "' + iCorretor + '", "' + alugado + '", "' + descricao + '", "' + valor + '", "' + cep + '", "' + numero + '", "' + bairro + '", "' + rua + '");'
         imoveis[id] = sqlCommand
         imoveisValores[id] = valor
 
@@ -100,11 +92,11 @@ def popularAlugueis(qtd):
         alugueis[imovel] = sqlCommand
 
 f = open("popularBancoCorretoria.txt", "w")
-popularCorretores(100)
-popularProprietarios(100)
-popularInquilinos(100)
-popularImoveis(200)
-popularAlugueis(50)
+popularCorretores(5)
+popularProprietarios(5)
+popularInquilinos(5)
+popularImoveis(5)
+popularAlugueis(5)
 for i in corretores:
     f.write(corretores[i] + '\n')
 for i in proprietarios:
